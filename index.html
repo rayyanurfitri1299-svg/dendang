@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player + Iklan</title>
+    <title>Video Player + Direct Link Ad</title>
     <style>
         * {
             box-sizing: border-box;
@@ -33,32 +33,42 @@
             width: 100%;
             display: block;
         }
-        /* Iklan Pop-up di dalam Video */
+        /* Style Iklan Pop-up / Overlay */
         .ad-popup {
             display: none;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             border: 1px solid #ff9900;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             border-radius: 8px;
             z-index: 10;
-            width: 70%;
+            width: 80%;
         }
-        .ad-popup button {
+        .ad-popup .close-btn {
             position: absolute;
             top: 5px;
             right: 10px;
             background: transparent;
             border: none;
             color: #fff;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
         }
-        /* Slot Iklan Banner di Bawah Video */
+        .btn-ad {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #00adb5;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        /* Slot Banner Iklan Bawah */
         .ad-banner {
             margin-top: 15px;
             padding: 20px;
@@ -67,11 +77,6 @@
             text-align: center;
             border-radius: 8px;
         }
-        .ad-banner a {
-            color: #00adb5;
-            text-decoration: none;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -79,45 +84,68 @@
 <div class="container">
     <div class="video-wrapper">
         <video id="myVideo" controls>
-            <source src="https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b" type="video/mp4">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
             Browser kamu nggak mendukung tag video.
         </video>
 
-        <!-- Iklan Overlay/Pop-up (muncul pas di-pause) -->
+        <!-- Dynamic Overlay Ad -->
         <div id="adPopup" class="ad-popup">
-            <button onclick="closeAd()">✕</button>
-            <p><strong>IKLAN SPONSOR</strong></p>
-            <p style="font-size: 12px; margin-top: 5px;">Promo khusus buat kamu! Klik link di bawah ini.</p>
-            <a href="https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b" target="_blank" style="color: #00adb5; display: inline-block; margin-top: 10px;">Cek Sekarang</a>
+            <button class="close-btn" onclick="closeAd()">✕</button>
+            <p style="color: #ff9900; font-size: 12px; font-weight: bold;">SPONSORED CONTENT</p>
+            <h4 style="margin-top: 5px;">Penawaran Spesial Hari Ini!</h4>
+            <p style="font-size: 13px; margin-top: 5px;">Klik tombol di bawah untuk melihat penawaran menarik.</p>
+            <!-- Link Iklan Kamu -->
+            <a href="https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b" target="_blank" class="btn-ad" onclick="closeAd()">Klaim Sekarang</a>
         </div>
     </div>
 
-    <!-- Slot Iklan Banner -->
+    <!-- Slot Banner Iklan Bawah -->
     <div class="ad-banner">
         <p style="font-size: 12px; color: #888;">IKLAN</p>
-        <h3>Diskon Hingga 50% Hari Ini!</h3>
-        <p><a href="https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b" target="_blank">Klik di sini buat klaim promo</a></p>
+        <h3>Dapatkan Promo Menarik Lainnya</h3>
+        <!-- Link Iklan Kamu -->
+        <p style="margin-top: 10px;">
+            <a href="https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b" target="_blank" class="btn-ad">Klik di Sini</a>
+        </p>
     </div>
 </div>
 
 <script>
     const video = document.getElementById('myVideo');
     const adPopup = document.getElementById('adPopup');
+    const adUrl = "https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b";
 
-    // Munculin iklan pas video di-pause
+    // Pengaturan Mid-roll (Detik ke berapa iklan muncul otomatis)
+    const adTriggerTime = 5; 
+    let adShown = false;
+
+    // Trigger iklan otomatis di tengah video
+    video.addEventListener('timeupdate', () => {
+        if (Math.floor(video.currentTime) === adTriggerTime && !adShown) {
+            video.pause();
+            adPopup.style.display = 'block';
+            adShown = true;
+            
+            // Buka iklan di tab baru secara otomatis saat mid-roll terdeteksi
+            window.open(adUrl, '_blank');
+        }
+    });
+
+    // Pause manual oleh user
     video.addEventListener('pause', () => {
-        if (!video.ended) {
+        if (!video.ended && Math.floor(video.currentTime) !== adTriggerTime) {
             adPopup.style.display = 'block';
         }
     });
 
-    // Sembunyiin iklan pas video di-play lagi
+    // Video di-play kembali
     video.addEventListener('play', () => {
         adPopup.style.display = 'none';
     });
 
     function closeAd() {
         adPopup.style.display = 'none';
+        video.play();
     }
 </script>
 
