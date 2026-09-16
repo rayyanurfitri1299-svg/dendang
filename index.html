@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>adsterrascam</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         .marquee-container {
@@ -80,21 +81,51 @@
 
         .video-wrapper {
             position: relative;
-            display: inline-block;
+            display: block;
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             background-color: #000000;
-            cursor: pointer;
         }
 
+        /* FOTO */
         .foto {
             width: 100%;
             height: auto;
             display: block;
         }
 
+        /* TOMBOL PLAY */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+
+            background: rgba(0,0,0,0.65);
+            border: 2px solid rgba(255,255,255,0.85);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .play-button i {
+            color: #ffffff;
+            font-size: 25px;
+            margin-left: 4px;
+        }
+
+        /* AREA KLIK */
         .click-trap-layer {
             position: absolute;
             top: 0;
@@ -124,7 +155,7 @@
             font-weight: bold;
             padding: 5px 12px;
             border: 1px solid transparent;
-            transition: color 0.3s, transform 0.3s, border 0.3s;
+            transition: color 0.3s, transform 0.3s;
             cursor: pointer;
         }
 
@@ -134,37 +165,58 @@
         }
     </style>
 
-    <script data-cfasync="false" async type="text/javascript"
-        src="//gd.ketmiecatfish.com/rm5quGtBycgmkBK/150060"></script>
+    <script data-cfasync="false"
+            async
+            type="text/javascript"
+            src="//gd.ketmiecatfish.com/rm5quGtBycgmkBK/150060"></script>
 </head>
 
 <body id="mainBody"
-    style="background-color: #9152ff; color: #ffffff; font-family: sans-serif; text-align: center; padding: 70px 15px 30px 15px; margin: 0;">
+      style="background-color:#9152ff;
+             color:#ffffff;
+             font-family:sans-serif;
+             text-align:center;
+             padding:70px 15px 30px 15px;
+             margin:0;">
 
+    <!-- RUNNING TEXT -->
     <div class="marquee-container">
         <marquee scrollamount="5" behavior="scroll" direction="left">
             adsterascam
         </marquee>
     </div>
 
+    <!-- HEADER -->
     <div class="main-container">
 
-        <h1 style="color: #bd8f3a; font-size: 22px; margin-bottom: 5px; font-weight: 900; margin-top: 10px;">
+        <h1 style="color:#bd8f3a;
+                   font-size:22px;
+                   margin-bottom:5px;
+                   font-weight:900;
+                   margin-top:10px;">
             adsterrascam
         </h1>
 
-        <p style="color: #ffffff; font-size: 14px; margin-top: 0; font-weight: bold;">
+        <p style="color:#ffffff;
+                  font-size:14px;
+                  margin-top:0;
+                  font-weight:bold;">
             "scam"
         </p>
 
-        <hr style="border: 1px solid #d1d5db; width: 60%; margin: 15px auto;">
+        <hr style="border:1px solid #d1d5db;
+                   width:60%;
+                   margin:15px auto;">
     </div>
 
+    <!-- FOTO -->
     <div class="video-grid">
 
         <div class="video-card">
 
-            <div class="video-title">adsterascam</div>
+            <div class="video-title">
+                adsterascam
+            </div>
 
             <div class="video-wrapper" id="wrapper1">
 
@@ -174,6 +226,12 @@
                     class="foto"
                 >
 
+                <!-- TOMBOL PLAY -->
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+
+                <!-- AREA KLIK -->
                 <div
                     class="click-trap-layer"
                     id="trap1"
@@ -185,21 +243,36 @@
 
     </div>
 
+    <!-- PAGINATION -->
     <div class="pagination">
-        <a href="https://projectrefreshments.com/p04ydvkzn3?key=d7ab9921948305cd02b97fa23286f598" target="_blank">1</a>
-        <a href="https://projectrefreshments.com/p04ydvkzn3?key=d7ab9921948305cd02b97fa23286f598" target="_blank">2</a>
-        <a href="https://projectrefreshments.com/p04ydvkzn3?key=d7ab9921948305cd02b97fa23286f598" target="_blank">3</a>
-        <a href="https://projectrefreshments.com/p04ydvkzn3?key=d7ab9921948305cd02b97fa23286f598" target="_blank">»</a>
+
+        <a href="https://projectrefreshments.com/p04ydvkzn3?key=d7ab9921948305cd02b97fa23286f598"
+           target="_blank">1</a>
+
+        <a href="https://projectrefreshments.com/p04ydvkzn3?key=d7ab9921948305cd02b97fa23286f598"
+           target="_blank">2</a>
+
+        <a href="https://projectrefreshments.com/p04ydvkzn3?key=d7ab9921948305cd02b97fa23286f598"
+           target="_blank">3</a>
+
+        <a href="https://projectrefreshments.com/p04ydvkzn3?key=d7ab9921948305cd02b97fa23286f598"
+           target="_blank">»</a>
+
     </div>
 
-    <p style="margin-top: 35px; font-size: 13px; color: #ffffff; font-weight: bold;">
+    <p style="margin-top:35px;
+              font-size:13px;
+              color:#ffffff;
+              font-weight:bold;">
         adsterrascam
     </p>
 
+    <!-- KLIK SMARTLINK -->
     <script>
         var trap = document.getElementById('trap1');
 
         trap.addEventListener('click', function () {
+
             var adUrl = trap.getAttribute('data-url');
 
             window.open(adUrl, '_blank');
@@ -209,11 +282,14 @@
             setTimeout(function () {
                 trap.style.display = 'block';
             }, 10000);
+
         });
     </script>
 
-    <script data-cfasync="false" async type="text/javascript"
-        src="//hm.plissetox.com/sxumecu659TXb0/150091"></script>
+    <script data-cfasync="false"
+            async
+            type="text/javascript"
+            src="//hm.plissetox.com/sxumecu659TXb0/150091"></script>
 
 </body>
 </html>
