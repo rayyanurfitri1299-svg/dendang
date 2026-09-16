@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player + Iklan</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        /* Iklan Pop-up di dalam Video */
+        .ad-popup {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid #ff9900;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            z-index: 10;
+            width: 70%;
+        }
+        .ad-popup button {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        /* Slot Iklan Banner di Bawah Video */
+        .ad-banner {
+            margin-top: 15px;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border: 2px dashed #444;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .ad-banner a {
+            color: #00adb5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="video-wrapper">
+        <video id="myVideo" controls>
+            <source src="https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b" type="video/mp4">
+            Browser kamu nggak mendukung tag video.
+        </video>
+
+        <!-- Iklan Overlay/Pop-up (muncul pas di-pause) -->
+        <div id="adPopup" class="ad-popup">
+            <button onclick="closeAd()">✕</button>
+            <p><strong>IKLAN SPONSOR</strong></p>
+            <p style="font-size: 12px; margin-top: 5px;">Promo khusus buat kamu! Klik link di bawah ini.</p>
+            <a href="https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b" target="_blank" style="color: #00adb5; display: inline-block; margin-top: 10px;">Cek Sekarang</a>
+        </div>
+    </div>
+
+    <!-- Slot Iklan Banner -->
+    <div class="ad-banner">
+        <p style="font-size: 12px; color: #888;">IKLAN</p>
+        <h3>Diskon Hingga 50% Hari Ini!</h3>
+        <p><a href="https://indefinitelynutmegbile.com/j5b5ubkh?key=b5c4d3a66eb91b633dd477b7b849bd8b" target="_blank">Klik di sini buat klaim promo</a></p>
+    </div>
+</div>
+
+<script>
+    const video = document.getElementById('myVideo');
+    const adPopup = document.getElementById('adPopup');
+
+    // Munculin iklan pas video di-pause
+    video.addEventListener('pause', () => {
+        if (!video.ended) {
+            adPopup.style.display = 'block';
+        }
+    });
+
+    // Sembunyiin iklan pas video di-play lagi
+    video.addEventListener('play', () => {
+        adPopup.style.display = 'none';
+    });
+
+    function closeAd() {
+        adPopup.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
